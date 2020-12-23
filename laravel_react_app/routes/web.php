@@ -11,12 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/{path}', function () {
+//     return view('welcome');
+// })->where('path','.*');
 
-Route::get('/category','Api\CategoryController@index');
-Route::post('/category/store','Api\CategoryController@store');
-Route::delete('/category/delete/{id}','Api\CategoryController@destroy');
+
+Route::get('/','TaskController@index');
+
+Route::post('task/save','TaskController@store');
+
+Route::get('task/edit/{id}','TaskController@edit');
+
+Route::post('task/update/{id}','TaskController@update');
+
+Route::get('task/delete/{id}','TaskController@destroy');
 
 

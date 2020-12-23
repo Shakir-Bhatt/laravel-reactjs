@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $result = Category::all();
+        $result = Category::paginate(5);
         return $result;
     }
 
@@ -61,7 +61,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return $category;
     }
 
     /**
@@ -73,7 +74,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+        $category->name = $request->category_name;
+        $category->save();
     }
 
     /**
@@ -86,6 +89,5 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $category->delete();
-        return;
     }
 }
